@@ -75,7 +75,7 @@ public class Shooting {
         currentStep = angleMotor.getSensorCollection().getQuadraturePosition();
         double angleMotorOut = 0;
 
-        if (Robot.xBox.getTriggerAxis(Hand.kLeft)>0) {
+        if (Robot.xBox1.getTriggerAxis(Hand.kLeft)>0) {
             angleMotorOut = 0.2;
             target = currentStep;
             idleLoopCount = 0;

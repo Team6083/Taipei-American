@@ -52,6 +52,12 @@ public class Up {
             autoRetreat = true;
         }
 
+        if ( Robot.xBox1.getXButtonPressed()) {
+            target = -16000;
+        }else if(Robot.xBox1.getYButtonPressed()){
+            target = -32000;
+        }
+
         if (autoRetreat) {
             if (Math.abs(currentPos - target) < 500) {
                 Hatch.dhreverse();

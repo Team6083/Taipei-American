@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
@@ -39,30 +38,21 @@ public class Hatch {
 
     public static void tele() {
         if (Shooting.an() == true || protectOverride) {
-            if (Robot.xBox.getStickButtonPressed(Hand.kRight)) {
-                if (dhatch.get() == DoubleSolenoid.Value.kForward) {
+            if (Robot.xBox1.getPOV()==0) {
                     dhatch.set(DoubleSolenoid.Value.kReverse);
-                } else {
+                } else if (Robot.xBox1.getPOV()==180){
                     dhatch.set(DoubleSolenoid.Value.kForward);
                 }
             }
-        } else {
+         else {
             dhatch.set(Value.kReverse);
         }
 
         dashboard();
 
-        if (Robot.controler.check(Robot.xBox.getBButton(), false) || Robot.xBox.getPOV() == 270) {
+        if (Robot.xBox.getPOV() == 0) {
             hatch.set(0.35);
-        } else if (Robot.controler.check(Robot.xBox.getYButton(), false) || Robot.xBox.getPOV() == 90) {
-            hatch.set(-0.35);
-        } else {
-            hatch.set(0);
-        }
-
-        if (Robot.xBox1.getPOV() == 0) {
-            hatch.set(0.35);
-        } else if (Robot.xBox1.getPOV() == 180) {
+        } else if (Robot.xBox.getPOV() == 180) {
             hatch.set(-0.35);
         } else {
             hatch.set(0);

@@ -54,7 +54,6 @@ public class Drive {
 
     public static void tank() {
         drive.tankDrive(Robot.xBox);
-        drive.tankDrive(Robot.xBox1);
     }
 
     public static void gyrowalker() {

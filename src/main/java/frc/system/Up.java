@@ -47,7 +47,7 @@ public class Up {
             target = currentPos;
         }
 
-        if ((Robot.xBox.getStartButtonPressed() || Robot.xBox1.getAButtonPressed()) && Hatch.rehatch()) {
+        if ( Robot.xBox.getAButtonPressed() && Hatch.rehatch()) {
             target += 1350;
             autoRetreat = true;
         }
@@ -59,7 +59,7 @@ public class Up {
             }
         }
 
-        if(Robot.xBox.getPOV() == 270){
+        if(Robot.xBox1.getPOV() == 270){
             target = 0;
         }
 

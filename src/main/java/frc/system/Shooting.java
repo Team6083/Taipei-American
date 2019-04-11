@@ -12,6 +12,7 @@ import org.team6083.lib.dashboard.DashBoard;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
@@ -74,11 +75,11 @@ public class Shooting {
         currentStep = angleMotor.getSensorCollection().getQuadraturePosition();
         double angleMotorOut = 0;
 
-        if (Robot.xBox.getPOV(0) == 0) {
+        if (Robot.xBox.getTriggerAxis(Hand.kLeft)>0) {
             angleMotorOut = 0.2;
             target = currentStep;
             idleLoopCount = 0;
-        } else if (Robot.xBox.getPOV(0) == 180) {
+        } else if (Robot.xBox1.getTriggerAxis(Hand.kRight)>0){
             angleMotorOut = -0.15;
             target = currentStep;
             idleLoopCount = 0;
@@ -94,12 +95,12 @@ public class Shooting {
 
         angleMotor.set(ControlMode.PercentOutput, angleMotorOut);
 
-        if (Robot.xBox1.getBButton()) {
-            // shoot
-            leftShootMotor.set(ControlMode.PercentOutput, -0.7);
-            rightShootMotor.set(ControlMode.PercentOutput, 0.7);
+        if (Robot.xBox.getBButton()) {
+            // in
+            leftShootMotor.set(ControlMode.PercentOutput, 0.7);
+            rightShootMotor.set(ControlMode.PercentOutput, -0.7);
             resetAllShoot();
-        } else if (Robot.xBox1.getYButton()) {
+        } else if (Robot.xBox.getYButton()) {
             // shoot
             leftShootMotor.set(ControlMode.PercentOutput, -0.4);
             rightShootMotor.set(ControlMode.PercentOutput, 0.4);
@@ -109,7 +110,7 @@ public class Shooting {
             rightShootMotor.set(0);
         }
     
-        if (Robot.controler.check(Robot.xBox.getAButton(), true)) {
+        /*if (Robot.controler.check(Robot.xBox.getAButton(), true)) {
             // shoot
             leftShootMotor.set(ControlMode.PercentOutput, -0.6);
             rightShootMotor.set(ControlMode.PercentOutput, 0.6);
@@ -150,7 +151,7 @@ public class Shooting {
         } else if (timer.get() == 0 && !Robot.controler.check(Robot.xBox.getYButton(), true) && !sucked) {
             leftShootMotor.set(0);
             rightShootMotor.set(0);
-        }
+        }*/
 
         dashboard();
     }
